@@ -1,18 +1,17 @@
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
-import './App.css';
-import Link from '@material-ui/core/Link';
-import Typography from '@material-ui/core/Typography';
+import { Typography, Link } from '@material-ui/core';
 import { theme } from '../../styles/theme';
-
+import{
+  CustomCheckbox
+} from '../CustomCheckbox';
 
 function App() {
   const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
   return (
     <ThemeProvider theme={theme}>
     <div className="App">
-      <header className="App-header">
-        <Typography>
+        <Typography color='secondary' variant='h1'>
           Edit <code>src/App.tsx</code> and save to reload.
         </Typography>
       <Typography>
@@ -20,8 +19,8 @@ function App() {
         Learn React
         </Link>
       </Typography>
-      </header>
     </div>
+      <CustomCheckbox />
     </ThemeProvider>
   );
 }
