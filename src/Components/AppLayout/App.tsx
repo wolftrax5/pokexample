@@ -23,7 +23,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
        <div className={classes.root}>
-      <Grid container spacing={3}>
+      <Grid container >
         <Grid item xs={12}>
           <Paper className={classes.paper} >xs=12</Paper>
         </Grid>
