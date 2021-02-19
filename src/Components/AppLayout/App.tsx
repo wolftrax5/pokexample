@@ -2,6 +2,7 @@ import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { theme } from '../../styles/theme';
+import { HeaderBar } from '../HeaderBar';
 
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -22,6 +23,7 @@ function App() {
   const classes = useStyles();
   return (
     <ThemeProvider theme={theme}>
+      <HeaderBar></HeaderBar>
        <div className={classes.root}>
       <Grid container >
         <Grid item xs={12}>
