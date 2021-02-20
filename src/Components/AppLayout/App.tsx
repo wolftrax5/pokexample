@@ -4,19 +4,13 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { theme } from '../../styles/theme';
 import { HeaderBar } from '../HeaderBar';
 
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
-    },
-    paper: {
-      padding: theme.spacing(2),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
-    },
+    }
   }),
 );
 function App() {
@@ -25,27 +19,12 @@ function App() {
     <ThemeProvider theme={theme}>
       <HeaderBar></HeaderBar>
        <div className={classes.root}>
-      <Grid container >
-        <Grid item xs={12}>
-          <Paper className={classes.paper} >xs=12</Paper>
+      <Grid container direction='column'>
+        <Grid item>
+            <h2>CARDS</h2>
         </Grid>
-        <Grid item xs={6}>
-          <Paper className={classes.paper} >xs=6</Paper>
-        </Grid>
-        <Grid item xs={6}>
-          <Paper className={classes.paper} >xs=6</Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper} >xs=3</Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper} >xs=3</Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper} >xs=3</Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper} >xs=3</Paper>
+        <Grid item>
+          <h2>Table section</h2>
         </Grid>
       </Grid>
     </div>
