@@ -21,7 +21,7 @@ export function PokeStats(props: IPockeProps) {
     const {label, data} = props
     return(
         <Paper className={classes.root} elevation={1}>
-            <Typography>{label}</Typography>
+            <Typography variant='h6'>{label}</Typography>
             <Typography variant='h4' >{data}</Typography>
         </Paper>
     )
