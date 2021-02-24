@@ -1,5 +1,7 @@
-import React from 'react';
-import {Paper , Typography} from '@material-ui/core'
+import React, { useEffect, useState } from 'react';
+import {Box , Typography} from '@material-ui/core'
+import { useTheme } from '@material-ui/core/styles';
+
 import {
     makeStyles,
     createStyles,
@@ -16,14 +18,28 @@ interface IPockeProps {
       width: theme.spacing(22),
       height: theme.spacing(8),
   }}));
+
 export function PokeStats(props: IPockeProps) {
     const classes = useStyles()
     const {label, data} = props
+    const theme = useTheme();
+
+    const [colorText, setColorText]= useState(theme.palette.text.secondary)
+    const {success, error} = theme.palette
+    useEffect(()=> {
+        
+        if(data > 20){
+            setColorText(success.main)
+        }
+        if(data<20){
+            setColorText(error.main)
+        }
+    }, [data, success, error])
     return(
-        <Paper className={classes.root} elevation={1}>
-            <Typography variant='h6'>{label}</Typography>
-            <Typography variant='h4' >{data}</Typography>
-        </Paper>
+        <Box display="flex" flexDirection="row" justifyContent="space-around" alignItems="center" className={classes.root} bgcolor="background.paper">
+            <Typography>{label}</Typography>
+            <Typography variant='h4' style={{ color: colorText }}>{data}</Typography>
+        </Box>
     )
 }
 
