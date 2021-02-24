@@ -4,11 +4,13 @@ declare module '@material-ui/core/styles/createMuiTheme' {
     interface Theme {
       status: {
         danger: React.CSSProperties['color'],
+        success: React.CSSProperties['color'],
       }
     }
     interface ThemeOptions {
       status?: {
         danger?: React.CSSProperties['color']
+        success?: React.CSSProperties['color'],
       }
     }
   }
@@ -17,7 +19,8 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 
 let theme = createMuiTheme({
     status: {
-        danger: '#ff00ff',
+        danger: '#c83300',
+        success: '#18b310',
     },
     palette: {
         primary: {
@@ -31,6 +34,10 @@ let theme = createMuiTheme({
           main: '#0044ff',
           // dark: will be calculated from palette.secondary.main,
           contrastText: '#ffcc00',
+        },
+        text:{
+          primary: '#585858',
+          secondary: '#080808',
         },
         // Used by `getContrastText()` to maximize the contrast between
         // the background and the text.
