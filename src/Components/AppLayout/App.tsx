@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import { ThemeProvider } from '@material-ui/core/styles';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
+import { usePokemonsData } from '../../hooks/useFetchData'
 import { theme } from '../../styles/theme';
 import { HeaderBar } from '../HeaderBar';
 import {PokeStats} from '../PokeStats';
@@ -20,6 +21,10 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 function App() {
   const classes = useStyles();
+  const { pokemons, loading } = usePokemonsData();
+  useEffect(() => {
+    console.log(pokemons, loading)
+  }, [pokemons, loading])
   return (
     <ThemeProvider theme={theme}>
       <HeaderBar></HeaderBar>
