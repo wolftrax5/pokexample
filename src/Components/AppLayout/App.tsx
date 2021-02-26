@@ -8,6 +8,7 @@ import { usePokemonsData } from '../../hooks/useFetchData'
 import { theme } from '../../styles/theme';
 import { HeaderBar } from '../HeaderBar';
 import {PokeStats} from '../PokeStats';
+import { GroupTabs } from '../GroupTabs';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -21,10 +22,10 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 function App() {
   const classes = useStyles();
-  const { pokemons, loading } = usePokemonsData();
+  /*const { pokemons, loading } = usePokemonsData();
   useEffect(() => {
     console.log(pokemons, loading)
-  }, [pokemons, loading])
+  }, [pokemons, loading])*/
   return (
     <ThemeProvider theme={theme}>
       <HeaderBar></HeaderBar>
@@ -41,6 +42,7 @@ function App() {
         </Grid>
         <Grid item>
           <h2>Table section</h2>
+          <GroupTabs/>
         </Grid>
       </Grid>
     </div>
