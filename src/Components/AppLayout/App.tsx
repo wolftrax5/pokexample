@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 
 import { ThemeProvider } from '@material-ui/core/styles';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+import {Grid, Container} from '@material-ui/core';
 
-import { usePokemonsData } from '../../hooks/useFetchData'
+// import { usePokemonsData } from '../../hooks/useFetchData'
 import { theme } from '../../styles/theme';
 import { HeaderBar } from '../HeaderBar';
 import {PokeStats} from '../PokeStats';
@@ -41,8 +41,10 @@ function App() {
           </Grid>
         </Grid>
         <Grid item>
-          <h2>Table section</h2>
-          <GroupTabs/>
+            <Container>
+              <h2>Table section</h2>
+              <GroupTabs/>
+            </Container>
         </Grid>
       </Grid>
     </div>
