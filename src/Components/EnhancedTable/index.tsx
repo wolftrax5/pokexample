@@ -117,8 +117,8 @@ function EnhancedTableHead(props: EnhancedTableProps) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
-            padding={headCell.disablePadding ? 'none' : 'default'}
+            align={'center'}
+            padding={'default'}
             sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel
@@ -296,7 +296,6 @@ export  function EnhancedTable() {
                     <TableRow
                       hover
                       onClick={(event) => handleClick(event, row.name)}
-                      role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
                       key={row.name}
