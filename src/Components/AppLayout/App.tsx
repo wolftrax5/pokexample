@@ -9,6 +9,7 @@ import { theme } from '../../styles/theme';
 import { HeaderBar } from '../HeaderBar';
 import {PokeStats} from '../PokeStats';
 import { GroupTabs } from '../GroupTabs';
+import { EnhancedTable } from '../EnhancedTable'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -44,6 +45,7 @@ function App() {
             <Container>
               <h2>Table section</h2>
               <GroupTabs/>
+              <EnhancedTable />
             </Container>
         </Grid>
       </Grid>
