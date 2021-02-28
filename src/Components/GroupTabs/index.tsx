@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -32,15 +31,7 @@ function TabPanel(props: TabPanelProps) {
   );
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    flexGrow: 1,
-    width: '100%',
-  },
-}));
-
 export function GroupTabs() {
-  const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
@@ -48,7 +39,7 @@ export function GroupTabs() {
   };
 
   return (
-    <div className={classes.root}>
+    <>
       <AppBar position="static" color="default">
         <Tabs
           value={value}
@@ -59,7 +50,6 @@ export function GroupTabs() {
           <Tab label="Item One"  />
           <Tab label="Item Two"  />
           <Tab label="Item Three"  />
-          <Tab label="Item Four" />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -71,9 +61,6 @@ export function GroupTabs() {
       <TabPanel value={value} index={2}>
         Item Three
       </TabPanel>
-      <TabPanel value={value} index={3}>
-        Item Four
-      </TabPanel>
-    </div>
+    </>
   );
 }
