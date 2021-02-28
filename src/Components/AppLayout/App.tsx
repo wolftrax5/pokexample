@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 function App() {
   const classes = useStyles();
-  /*const { pokemons, loading } = usePokemonsData();
+  /*const { pokemons, loading } = usePokemonsData('https://pokeapi.co/api/v2/pokemon?limit=100&offset=200');
   useEffect(() => {
     console.log(pokemons, loading)
   }, [pokemons, loading])*/

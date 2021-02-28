@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react'
 
-export function usePokemonsData () {
+export function usePokemonsData (url : string) {
   const [pokemons, setPokemons] = useState([])
   const [loading, setLoading] = useState(false)
-
-  useEffect(() => {
-    setLoading(true)
-    window.fetch('https://pokeapi.co/api/v2/pokemon?limit=100&offset=200')
+  const fetchData = () => {
+    window.fetch(url)
       .then(res => res.json())
       .then(response => setPokemons(response.results))
       .finally(() => setLoading(false))
-  }, [])
+  }
+  useEffect(() => {
+    setLoading(true)
+    fetchData();
+  }, [url])
   return { pokemons, loading }
 }
