@@ -2,20 +2,32 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
+import { ResponsiveTable } from '../ResponsiveTable'
+import { Paper } from '@material-ui/core';
 interface TabPanelProps {
   children?: React.ReactNode;
   index: any;
   value: any;
 }
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    panelContainer: {
+      [theme.breakpoints.down('sm')]: {
+        overflow: 'auto'
+      },
+    }
 
+  }),
+);
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
-
+  const classes = useStyles()
   return (
-    <div
+    <Paper
+      square
+      className={classes.panelContainer}
       role="tabpanel"
       hidden={value !== index}
       id={`scrollable-auto-tabpanel-${index}`}
@@ -23,11 +35,9 @@ function TabPanel(props: TabPanelProps) {
       {...other}
     >
       {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
-        </Box>
+        <>{children}</>
       )}
-    </div>
+    </Paper>
   );
 }
 
@@ -53,7 +63,7 @@ export function GroupTabs() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        Item One
+        <ResponsiveTable />
       </TabPanel>
       <TabPanel value={value} index={1}>
         Item Two
