@@ -9,6 +9,9 @@ import { MenuSharp } from  '@material-ui/icons';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    Bar: {
+      marginBottom: theme.spacing(2),
+    },
     menuButton: {
       marginRight: theme.spacing(2),
     },
@@ -22,7 +25,7 @@ export const HeaderBar = () => {
   const classes = useStyles();
 
   return (
-      <AppBar position="static">
+      <AppBar  className={classes.Bar} position="static">
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuSharp />
