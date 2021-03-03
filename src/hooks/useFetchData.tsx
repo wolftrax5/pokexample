@@ -3,15 +3,16 @@ import { useState, useEffect } from 'react'
 export function usePokemonsData (url : string) {
   const [pokemons, setPokemons] = useState([])
   const [loading, setLoading] = useState(false)
-  const fetchData = () => {
-    window.fetch(url)
-      .then(res => res.json())
-      .then(response => setPokemons(response.results))
-      .finally(() => setLoading(false))
-  }
+
   useEffect(() => {
-    setLoading(true)
+    async function fetchData() {
+      setLoading(true)
+      const response = await fetch(url)
+      const data =  await response.json()
+      setPokemons(data.results)
+    }
     fetchData();
   }, [url])
+
   return { pokemons, loading }
 }
