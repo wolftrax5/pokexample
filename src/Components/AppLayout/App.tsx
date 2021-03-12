@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 
 import { ThemeProvider } from '@material-ui/core/styles';
-import {Grid, Container} from '@material-ui/core';
+import {Grid, Container } from '@material-ui/core';
 
 import { usePokemonsData } from '../../hooks/useFetchData'
 import {useToggle} from '../../hooks/useToogle';
@@ -38,6 +38,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <HeaderBar onMenuClick={toggle}></HeaderBar>
       <SideBar openBar={boolState} closer={toggle}/>
+
        <Container>
 
        <Grid container direction='column'>
