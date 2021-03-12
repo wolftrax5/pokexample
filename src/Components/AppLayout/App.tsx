@@ -4,7 +4,9 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import {Grid, Container} from '@material-ui/core';
 
 import { usePokemonsData } from '../../hooks/useFetchData'
+import {useToggle} from '../../hooks/useToogle';
 import { theme } from '../../styles/theme';
+import { SideBar } from '../SideBar'
 import { HeaderBar } from '../HeaderBar';
 import {PokeStats} from '../PokeStats';
 import { GroupTabs } from '../GroupTabs';
@@ -30,9 +32,12 @@ function App() {
   useEffect(() => {
     console.log(pokemons, loading)
   }, [pokemons, loading])
+
+  const {boolState, toggle}= useToggle(false)
   return (
     <ThemeProvider theme={theme}>
-      <HeaderBar></HeaderBar>
+      <HeaderBar onMenuClick={toggle}></HeaderBar>
+      <SideBar openBar={boolState} closer={toggle}/>
        <Container>
 
        <Grid container direction='column'>

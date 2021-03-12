@@ -20,14 +20,16 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
-
-export const HeaderBar = () => {
+interface IHeaderBarProps {
+  onMenuClick: ()=> void;
+  title?: string;
+}
+export const HeaderBar = ({onMenuClick}:IHeaderBarProps) => {
   const classes = useStyles();
-
   return (
       <AppBar  className={classes.Bar} position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          <IconButton onClick={onMenuClick} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuSharp />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
