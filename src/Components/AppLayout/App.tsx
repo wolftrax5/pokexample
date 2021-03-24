@@ -10,6 +10,7 @@ import { SideBar } from '../SideBar'
 import { HeaderBar } from '../HeaderBar';
 import {PokeStats} from '../PokeStats';
 import { GroupTabs } from '../GroupTabs';
+import {MultipleSelect} from '../Filter'
 
 const Body = () => (
   <>
@@ -40,7 +41,7 @@ function App() {
       <SideBar openBar={boolState} closer={toggle}/>
 
        <Container>
-
+       <MultipleSelect />
        <Grid container direction='column'>
         <Grid item>
           <CardPanel />
