@@ -69,8 +69,6 @@ export function MultipleSelect() {
       
       
       const newFilters = addNoRepeatItems(filterSelected, {name, value}, 'value') as IFilterSettigs[];
-      
-      console.log('VALUE', newFilters);
      setFilterSelected(newFilters);
   };
   const HandlerRender = (selected: any) => {
