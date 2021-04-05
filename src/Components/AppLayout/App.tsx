@@ -3,7 +3,6 @@ import React, {useEffect} from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import {Grid, Container } from '@material-ui/core';
 
-import { usePokemonsData } from '../../hooks/useFetchData'
 import {useToggle} from '../../hooks/useToogle';
 import { theme } from '../../styles/theme';
 import { SideBar } from '../SideBar'
@@ -11,6 +10,8 @@ import { HeaderBar } from '../HeaderBar';
 import {PokeStats} from '../PokeStats';
 import { GroupTabs } from '../GroupTabs';
 import {MultipleSelect} from '../Filter'
+
+import { fetchTypes } from '../../Utils/api/types';
 
 const Body = () => (
   <>
@@ -29,10 +30,10 @@ const CardPanel = () => (
 )
 
 function App() {
-  const { pokemons, loading } = usePokemonsData('https://pokeapi.co/api/v2/pokemon?limit=100&offset=200');
+
   useEffect(() => {
-    console.log(pokemons, loading)
-  }, [pokemons, loading])
+    fetchTypes()
+  }, [])
 
   const {boolState, toggle}= useToggle(false)
   return (
