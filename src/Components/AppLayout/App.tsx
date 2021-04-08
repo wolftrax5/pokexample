@@ -10,6 +10,7 @@ import { HeaderBar } from '../HeaderBar';
 import {PokeStats} from '../PokeStats';
 import { GroupTabs } from '../GroupTabs';
 import {MultipleSelect} from '../Filter'
+import {useFetchPokemonEnpoint} from '../../hooks/useFetchData';
 
 import { fetchTypes } from '../../Utils/api/types';
 
@@ -30,10 +31,15 @@ const CardPanel = () => (
 )
 
 function App() {
+  let { response, loading, fetchData} = useFetchPokemonEnpoint(fetchTypes,[])
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   useEffect(() => {
-    fetchTypes()
-  }, [])
+    console.log(response, loading)
+  }, [response, loading])
+
 
   const {boolState, toggle}= useToggle(false)
   return (
