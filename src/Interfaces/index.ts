@@ -42,3 +42,8 @@ export interface TYPE_RELATION {
     half_damage_from: NamedAPIResource[];
     double_damage_from: NamedAPIResource[];
 }
+
+export interface REDUCER_ACTION {
+    type: string;
+    payload: any;
+}
