@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import { POKETYPE_API, REDUCER_ACTION }from '../Interfaces'
 import {useFetchPokemonEnpoint} from '../hooks/useFetchData';
 import { fetchTypes } from '../Utils/api/types';
@@ -24,10 +24,17 @@ const TypesPokemonReducer = (state:TypesReducesState, action: REDUCER_ACTION) =>
 
 export const usePokeTypesList = () => {
     let { response, loading, fetchData} = useFetchPokemonEnpoint(fetchTypes,[])
+    const [pokeTypes, setPokeTypes] = useState<POKETYPE_API[]>([]);
 
     useEffect(() => {
         fetchData()
     }, [])
 
-    return { response, loading, fetchData}
+    useEffect(()=> {
+        if(response){
+            setPokeTypes(response)
+        }
+    }, [response])
+
+    return { pokeTypes, loading, fetchData}
 }

@@ -18,7 +18,7 @@ export function usePokemonsData (url : string) {
 }
 
 
-export function useFetchPokemonEnpoint (endpoint: any, inaitialResponse={}) {
+export function useFetchPokemonEnpoint (endpoint: any, inaitialResponse:any ) {
   const [response, setResponse] = useState(inaitialResponse)
   const [loading, setLoading] = useState(false)
 
