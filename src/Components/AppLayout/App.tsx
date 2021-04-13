@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import { ThemeProvider } from '@material-ui/core/styles';
 import {Grid, Container } from '@material-ui/core';
@@ -10,16 +10,10 @@ import { HeaderBar } from '../HeaderBar';
 import {PokeStats} from '../PokeStats';
 import { GroupTabs } from '../GroupTabs';
 import {MultipleSelect} from '../Filter'
-import {useFetchPokemonEnpoint} from '../../hooks/useFetchData';
+import {usePokeTypesList} from '../../hooks/useTypesPokemon';
 
-import { fetchTypes } from '../../Utils/api/types';
+const Panel = ({name}: any) => (<h2>{name}</h2>)
 
-const Body = () => (
-  <>
-    <h2>Table section</h2>
-    <GroupTabs/>
-  </>
-)
 const CardPanel = () => (
   <Grid container  spacing={2}>
     {[0, 1, 2, 3,4,5 ].map((value) => (
@@ -31,14 +25,28 @@ const CardPanel = () => (
 )
 
 function App() {
-  let { response, loading, fetchData} = useFetchPokemonEnpoint(fetchTypes,[])
+  let { pokeTypes, loading, fetchData} = usePokeTypesList()
+
+  const [tabsData, setTabsData] = useState([
+    {label: 'Not Data', component: <Panel name={'not Data'}/>}
+  ])
+
   useEffect(() => {
     fetchData()
   }, [])
 
   useEffect(() => {
-    console.log(response, loading)
-  }, [response, loading])
+    if(pokeTypes.length > 0) {
+      const tabs = pokeTypes.map((item) => ({
+        label: item.name,
+        component:(
+            <Panel name={item.name}
+            />
+        )
+      }))
+      setTabsData(tabs)
+    }
+  }, [pokeTypes])
 
 
   const {boolState, toggle}= useToggle(false)
@@ -48,13 +56,9 @@ function App() {
       <SideBar openBar={boolState} closer={toggle}/>
 
        <Container>
-       <MultipleSelect />
        <Grid container direction='column'>
-        <Grid item>
-          <CardPanel />
-        </Grid>
         <Grid style= {{width: '100%'}} item>
-            <Body />
+          <GroupTabs tabs={tabsData} />
         </Grid>
       </Grid>
 

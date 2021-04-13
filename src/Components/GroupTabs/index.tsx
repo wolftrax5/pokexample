@@ -4,7 +4,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
-import { ResponsiveTable } from '../ResponsiveTable'
 import { Paper } from '@material-ui/core';
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -40,37 +39,53 @@ function TabPanel(props: TabPanelProps) {
     </Paper>
   );
 }
+export interface ITabProp {
+  label: string;
+  component: JSX.Element;
+}
+export interface IGroupTabsProps {
+  tabs: ITabProp[];
+}
 
-export function GroupTabs() {
-  const [value, setValue] = React.useState(0);
+export function GroupTabs(props: IGroupTabsProps) {
+  const {tabs} = props;
+
+  const [tabSelected, setTabSelected] = React.useState(0);
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    setValue(newValue);
+    setTabSelected(newValue);
   };
 
   return (
     <>
       <AppBar position="static" color="default">
         <Tabs
-          value={value}
+          value={tabSelected}
           onChange={handleChange}
           indicatorColor="primary"
           textColor="primary"
+          variant='scrollable'
+          scrollButtons='auto'
         >
-          <Tab label="Item One"  />
-          <Tab label="Item Two"  />
-          <Tab label="Item Three"  />
+          {
+            tabs.length !== 0 ? tabs.map((item, i) => (
+              <Tab
+                id={`${item.label} tab`}
+                key={`${item.label} key ${i}`}
+                label={item.label}
+                arial-label={`${item.label} tab`}
+              />
+            )) : null
+          }
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
-        <ResponsiveTable />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Item Two
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel>
+      {
+        tabs.length !== 0 ? tabs.map((item, i) => (
+          <TabPanel value={tabSelected} index={i} >
+            {item.component}
+          </TabPanel>
+        )) : null
+      }
     </>
   );
 }
