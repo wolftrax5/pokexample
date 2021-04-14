@@ -81,7 +81,7 @@ export function GroupTabs(props: IGroupTabsProps) {
       </AppBar>
       {
         tabs.length !== 0 ? tabs.map((item, i) => (
-          <TabPanel value={tabSelected} index={i} >
+          <TabPanel value={tabSelected} index={i}  key={`${item.label} panel ${i}`}>
             {item.component}
           </TabPanel>
         )) : null
