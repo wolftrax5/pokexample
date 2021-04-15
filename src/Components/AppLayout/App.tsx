@@ -9,10 +9,23 @@ import { SideBar } from '../SideBar'
 import { HeaderBar } from '../HeaderBar';
 import {PokeStats} from '../PokeStats';
 import { GroupTabs } from '../GroupTabs';
-import {MultipleSelect} from '../Filter'
 import {usePokeTypesList} from '../../hooks/useTypesPokemon';
 
-const Panel = ({name}: any) => (<h2>{name}</h2>)
+import { EMPTY_POKETYPE_API } from '../../Interfaces';
+
+const Panel = ({pokemons}: any) => {
+  const [pokemonType, ] = useState(pokemons);
+  const [showPokemons, ] = useState(pokemons.length > 0);
+  
+  return (
+    <>
+    {
+      showPokemons ?
+      <h2>{pokemonType[0].pokemon.name}</h2>
+      : 'wait a second'
+    }
+    </>)
+}
 
 const CardPanel = () => (
   <Grid container  spacing={2}>
@@ -28,7 +41,7 @@ function App() {
   let { pokeTypes, loading, fetchData} = usePokeTypesList()
 
   const [tabsData, setTabsData] = useState([
-    {label: 'Not Data', component: <Panel name={'not Data'}/>}
+    {label: 'Not Data', component: <Panel pokemons={EMPTY_POKETYPE_API.pokemon}/>}
   ])
 
   useEffect(() => {
@@ -36,11 +49,12 @@ function App() {
   }, [])
 
   useEffect(() => {
+    console.log(pokeTypes)
     if(pokeTypes.length > 0) {
       const tabs = pokeTypes.map((item) => ({
         label: item.name,
         component:(
-            <Panel name={item.name}
+            <Panel pokemons={item.pokemon}
             />
         )
       }))
