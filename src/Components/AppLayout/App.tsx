@@ -11,7 +11,7 @@ import {PokeStats} from '../PokeStats';
 import { GroupTabs } from '../GroupTabs';
 import {usePokeTypesList} from '../../hooks/useTypesPokemon';
 
-import { EMPTY_POKETYPE_API } from '../../Interfaces';
+import { EMPTY_POKETYPE_API, TypePokemon} from '../../Interfaces';
 
 const Panel = ({pokemons}: any) => {
   const [pokemonType, ] = useState(pokemons);
@@ -21,7 +21,9 @@ const Panel = ({pokemons}: any) => {
     <>
     {
       showPokemons ?
-      <h2>{pokemonType[0].pokemon.name}</h2>
+      pokemonType.map((item: TypePokemon)=> (
+        <h2>{item.pokemon.name}</h2>
+  ))
       : 'wait a second'
     }
     </>)
