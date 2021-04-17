@@ -7,7 +7,7 @@ import {useToggle} from '../../hooks/useToogle';
 import { theme } from '../../styles/theme';
 import { SideBar } from '../SideBar'
 import { HeaderBar } from '../HeaderBar';
-import {PokeStats} from '../PokeStats';
+import {PokeGrid} from '../PokeGrid';
 import { GroupTabs } from '../GroupTabs';
 import {usePokeTypesList} from '../../hooks/useTypesPokemon';
 
@@ -29,15 +29,6 @@ const Panel = ({pokemons}: any) => {
     </>)
 }
 
-const CardPanel = () => (
-  <Grid container  spacing={2}>
-    {[0, 1, 2, 3,4,5 ].map((value) => (
-      <Grid key={value} item>
-        <PokeStats label='Sales' data={value * 10}/>
-      </Grid>
-    ))}
-  </Grid>
-)
 
 function App() {
   let { pokeTypes, loading, fetchData} = usePokeTypesList()
@@ -56,7 +47,7 @@ function App() {
       const tabs = pokeTypes.map((item) => ({
         label: item.name,
         component:(
-            <Panel pokemons={item.pokemon}
+            <PokeGrid pokemons={item.pokemon}
             />
         )
       }))
