@@ -1,7 +1,8 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Grid } from '@material-ui/core';
 
 import { NamedAPIResource, TypePokemon} from '../../Interfaces';
+import {getIdByUrl} from '../../Utils/pokemons'
 
 interface IPokeGridProps {
     pokemons: TypePokemon[];
@@ -35,6 +36,9 @@ interface IPokeShowProps {
 }
 
 const PokeShow = ({pokemon}: IPokeShowProps) => {
-
-    return(<h2>{pokemon.name}</h2>)
+    const [pokemonId, setPokemonId] = useState('');
+    useEffect(()=> {
+        setPokemonId(getIdByUrl(pokemon.url))
+    }, [pokemon])
+    return(<h2>{pokemon.name} {pokemonId}</h2>)
 }
