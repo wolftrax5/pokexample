@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import {Grid } from '@material-ui/core';
 
 import { NamedAPIResource, TypePokemon} from '../../Interfaces';
-import {getIdByUrl} from '../../Utils/pokemons'
+import {getIdByUrl, getPokemonSprite} from '../../Utils/pokemons'
 
 interface IPokeGridProps {
     pokemons: TypePokemon[];
@@ -37,8 +37,21 @@ interface IPokeShowProps {
 
 const PokeShow = ({pokemon}: IPokeShowProps) => {
     const [pokemonId, setPokemonId] = useState('');
+    const [pokemonSprite, setPokemonSPrite] = useState('');
     useEffect(()=> {
         setPokemonId(getIdByUrl(pokemon.url))
     }, [pokemon])
-    return(<h2>{pokemon.name} {pokemonId}</h2>)
+
+    useEffect(()=> {
+        if(pokemonId.length > 0) {
+
+            setPokemonSPrite(getPokemonSprite(pokemonId))
+        }
+    }, [pokemonId])
+    return(
+        <>
+            <img src={pokemonSprite} alt={pokemon.name}/>
+            <h2>{pokemon.name}</h2>
+        </>
+    )
 }
