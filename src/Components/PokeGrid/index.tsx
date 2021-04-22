@@ -53,7 +53,14 @@ const PokeShow = ({pokemon}: IPokeShowProps) => {
     return(
         <>
             <SuspenseImg src={pokemonSprite} alt={pokemon.name}/>
-            <h2>{pokemon.name}</h2>
+            <h2 style={{textAlign: 'center'}}>{pokemon.name.split("-").map(function(item, idx) {
+        return (
+            <span key={idx}>
+                {item}
+                <br/>
+            </span>
+         )
+    })}</h2>
         </>
     )
 }
