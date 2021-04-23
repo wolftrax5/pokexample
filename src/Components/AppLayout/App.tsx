@@ -36,7 +36,9 @@ function App() {
   const [tabsData, setTabsData] = useState([
     {label: 'Not Data', component: <Panel pokemons={EMPTY_POKETYPE_API.pokemon}/>}
   ])
-
+  const clickPokemon= ()=> {
+    console.log('click pokemon')
+  }
   useEffect(() => {
     fetchData()
   }, [])
@@ -47,7 +49,7 @@ function App() {
       const tabs = pokeTypes.map((item) => ({
         label: item.name,
         component:(
-            <PokeGrid pokemons={item.pokemon}
+            <PokeGrid pokemons={item.pokemon} onPokeClick={clickPokemon}
             />
         )
       }))

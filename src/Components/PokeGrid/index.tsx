@@ -7,10 +7,11 @@ import {getIdByUrl, getPokemonSprite} from '../../Utils/pokemons'
 
 interface IPokeGridProps {
     pokemons: TypePokemon[];
+    onPokeClick: () => void;
 }
 const Loading = () => (<h1>Loading</h1>);
 
-export const PokeGrid = ({pokemons}: IPokeGridProps) => {
+export const PokeGrid = ({pokemons, onPokeClick}: IPokeGridProps) => {
     const [pokemonType, ] = useState(pokemons);
     const [showPokemons, ] = useState(pokemons.length > 0);
 
@@ -21,7 +22,7 @@ export const PokeGrid = ({pokemons}: IPokeGridProps) => {
     <Grid container  spacing={2}>
      {
         pokemonType.map((item: TypePokemon)=> (
-        <Grid key={item.pokemon.name} item>
+        <Grid key={item.pokemon.name} item onClick={onPokeClick}>
             <PokeShow pokemon={item.pokemon}/>
         </Grid>
         ))
