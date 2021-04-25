@@ -78,3 +78,5 @@ export interface REDUCER_ACTION {
     type: string;
     payload: any;
 }
+
+export type POKE_IDENFY = number | string;
