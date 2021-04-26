@@ -10,7 +10,7 @@ import { HeaderBar } from '../HeaderBar';
 import {PokeGrid} from '../PokeGrid';
 import { GroupTabs } from '../GroupTabs';
 import {usePokeTypesList} from '../../hooks/useTypesPokemon';
-
+import {useFetchPokemonEnpoint} from '../../hooks/useFetchData';
 import { EMPTY_POKETYPE_API, TypePokemon} from '../../Interfaces';
 import {fetchForm} from '../../Utils/api/pokemon'
 
@@ -32,20 +32,22 @@ const Panel = ({pokemons}: any) => {
 
 
 function App() {
-  let { pokeTypes, loading, fetchData} = usePokeTypesList()
+  let [pokemonChose1, setPokemonChose1]= useState('');
+  const enpointForm = fetchForm.bind(null, pokemonChose1);
+  const poKemonForm = useFetchPokemonEnpoint(enpointForm, {});
+  let { pokeTypes, loading, fetchData} = usePokeTypesList();
 
   const [tabsData, setTabsData] = useState([
     {label: 'Not Data', component: <Panel pokemons={EMPTY_POKETYPE_API.pokemon}/>}
   ])
-  const clickPokemon= (pokemon: string)=> {
-    try {
-      const enpoint = fetchForm(pokemon)
-    
-      console.log('click pokemon', enpoint)
-    } catch (error) {
-    }
 
+  const clickPokemon= (pokemon: string)=> {
+    setPokemonChose1(pokemon)
   }
+  useEffect(() => {
+    poKemonForm.fetchData()
+  }, [pokemonChose1])
+  
   useEffect(() => {
     fetchData()
   }, [])
