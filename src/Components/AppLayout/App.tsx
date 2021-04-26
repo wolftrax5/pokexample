@@ -12,6 +12,7 @@ import { GroupTabs } from '../GroupTabs';
 import {usePokeTypesList} from '../../hooks/useTypesPokemon';
 
 import { EMPTY_POKETYPE_API, TypePokemon} from '../../Interfaces';
+import {fetchForm} from '../../Utils/api/pokemon'
 
 const Panel = ({pokemons}: any) => {
   const [pokemonType, ] = useState(pokemons);
@@ -36,8 +37,14 @@ function App() {
   const [tabsData, setTabsData] = useState([
     {label: 'Not Data', component: <Panel pokemons={EMPTY_POKETYPE_API.pokemon}/>}
   ])
-  const clickPokemon= ()=> {
-    console.log('click pokemon')
+  const clickPokemon= (pokemon: string)=> {
+    try {
+      const enpoint = fetchForm(pokemon)
+    
+      console.log('click pokemon', enpoint)
+    } catch (error) {
+    }
+
   }
   useEffect(() => {
     fetchData()

@@ -7,7 +7,7 @@ import {getIdByUrl, getPokemonSprite} from '../../Utils/pokemons'
 
 interface IPokeGridProps {
     pokemons: TypePokemon[];
-    onPokeClick: () => void;
+    onPokeClick: (pokemon:string) => void;
 }
 const Loading = () => (<h1>Loading</h1>);
 
@@ -22,7 +22,7 @@ export const PokeGrid = ({pokemons, onPokeClick}: IPokeGridProps) => {
     <Grid container  spacing={2}>
      {
         pokemonType.map((item: TypePokemon)=> (
-        <Grid key={item.pokemon.name} item onClick={onPokeClick}>
+        <Grid key={item.pokemon.name} item onClick={()=> {onPokeClick(item.pokemon.name)}}>
             <PokeShow pokemon={item.pokemon}/>
         </Grid>
         ))
@@ -60,8 +60,7 @@ const PokeShow = ({pokemon}: IPokeShowProps) => {
                 {item}
                 <br/>
             </span>
-         )
-    })}</h2>
+            )})}</h2>
         </>
     )
 }
